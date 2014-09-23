@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<title></title>
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-6 column" id="main">
+			<form class="form-horizontal" id="volunteerForm">
+				<fieldset>
+
+					<!-- Form Name -->
+					<legend>Volunteer Form</legend>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">First Name</label>
+
+						<div class="col-md-4">
+							<input id="textinput" name="textinput" type="text" placeholder="Sherry"
+							       class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Last Name</label>
+
+						<div class="col-md-4">
+							<input id="textinput" name="textinput" type="text" placeholder="Snyder-Seavers"
+							       class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Address</label>
+
+						<div class="col-md-4">
+							<input id="textinput" name="textinput" type="text" placeholder="123 Sesame Street"
+							       class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- File Button -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="filebutton">File Button</label>
+
+						<div class="col-md-4">
+							<input id="filebutton" name="filebutton" class="input-file" type="file">
+						</div>
+					</div>
+
+					<!-- Button (Double) -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="button1id"></label>
+
+						<div class="col-md-8">
+							<button id="button1id" name="button1id" class="btn btn-success">Submit</button>
+							<button id="button2id" name="button2id" class="btn btn-default">Cancel</button>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
+		</div>
+		<div class="col-md-6 column">
+		</div>
+	</div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	$(function() {
+		$("#volunteerForm").submit(function (e) {
+			var postData = $('#volunteerForm').serialize();
+			var formURL = '/form/submitter';
+			$.ajax(
+					{
+						url    : formURL,
+						type   : "POST",
+						data   : postData,
+						success: function (data, textStatus, jqXHR) {
+							console.log("SUCCESS!");
+							$( "#main" ).load( "worked.html" );
+						},
+						error  : function (jqXHR, textStatus, errorThrown) {
+							console.log("WHOOPS!")
+						}
+					});
+			e.preventDefault(); //STOP default action
+		});
+	});
+</script>
+</html>
