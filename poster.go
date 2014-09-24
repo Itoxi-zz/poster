@@ -9,7 +9,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received")
 	w.WriteHeader(200)
-	w.Write([]byte("foo"))
+	w.Write([]byte("success"))
 }
 
 func main() {
